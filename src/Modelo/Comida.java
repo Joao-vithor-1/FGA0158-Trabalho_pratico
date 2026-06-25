@@ -1,15 +1,17 @@
 package Modelo;
 
 public class Comida extends Produto{
-	int tempo_preparo;
+
+	int tempoPreparo;
 	final boolean glutem;
 	final boolean vegano;
-	public Comida(String nome_produto, int qtd_produto, float preco_base,int tempo_preparo,boolean glutem,boolean vegano) {
-		this.tempo_preparo = tempo_preparo;
+	
+	public Comida(String nomeProduto, int qtdProduto, float precoBase,int tempoPreparo,boolean glutem,boolean vegano) {
+		
+		super(nomeProduto, qtdProduto, precoBase);
+		this.tempoPreparo = tempoPreparo;
 		this.glutem = glutem;
 		this.vegano = vegano;
-		
-		super(nome_produto, qtd_produto, preco_base);
 	}
 
 }
