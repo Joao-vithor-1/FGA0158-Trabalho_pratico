@@ -6,5 +6,5 @@ public interface Promocao {
 	
 	public int descontoClienteVip( float totalPedido, int pontosXp );
 	
-	public 	int descontoPersonalizado( float totalPedido, float desconto);
+	public 	int descontoPersonalizado( float totalBebida, float totalComida, float desconto);
 }
