@@ -14,8 +14,8 @@ public class Cliente {
 		
 	}
 	public  void cadastrarXp(float dinheiro) {
-		int n = 0;
-		saldoXp = ((int) dinheiro) *n;
+		int n = 1;
+		saldoXp += ((int) dinheiro) * n;
 	}
 	public String getCpf() {
 		return cpf;
