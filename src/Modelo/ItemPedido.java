@@ -14,7 +14,10 @@ public class ItemPedido {
     public void adicionarProduto(Produto produto) {
         lista.add(produto);
     }
-
+    
+    
+    
+    
     public void removerProduto(Produto produto) {
         lista.remove(produto);
     }
@@ -23,19 +26,48 @@ public class ItemPedido {
         return lista;
     }
     
+    public Produto getProduto(int i) {
+    	// adicionar exeçoes depois
+    	return lista.get(i);
+    }
+    
+    
+    protected float somaComida() {
+    	float total = 0;
+    	for(int i = 0;i<lista.size();i++) {
+    		if(lista.get(i) instanceof Comida) {
+    			total+=lista.get(i).getPrecoBase()*lista.get(i).getQtdProduto();
+    		}
+    	}
+    	return total;
+
+    }
+    
+    protected float somaBebida() {
+    	float total = 0;
+    	for(int i = 0;i<lista.size();i++) {
+    		if(lista.get(i) instanceof Bebida) {
+    			total+=lista.get(i).getPrecoBase()*lista.get(i).getQtdProduto();
+    		}
+    	}
+    	return total;
+
+    }
+
+    
     private void imprimirComida() {
-    		System.out.println("COMIDA : PRECO");
+    		System.out.println("Index...COMIDA : PRECO");
     		for(int i = 0;i<lista.size();i++) {
     		if(lista.get(i) instanceof Comida) {
-    			System.out.println(lista.get(i).getNomeProduto() +" :  R$" + lista.get(i).getPrecoBase());
+    			System.out.println(i+"..."+lista.get(i).getNomeProduto() +" :  R$" + lista.get(i).getPrecoBase());
     		}
     	}
     }
     private void imprimirBebida() {
-    	System.out.println("BEBIDA :  PRECO");
+    	System.out.println("Index...BEBIDA :  PRECO");
 		for(int i = 0;i<lista.size();i++) {
 		if(lista.get(i) instanceof Bebida) {
-			System.out.println(lista.get(i).getNomeProduto() +" :  R$" + lista.get(i).getPrecoBase());
+			System.out.println(i+"..."+lista.get(i).getNomeProduto() +" :  R$" + lista.get(i).getPrecoBase());
 		}
       }
 		

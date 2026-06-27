@@ -1,0 +1,40 @@
+package servico;
+import Modelo.*;
+
+public class Venda  implements Promocao{
+	final private Cliente cliente;
+	final private Atendente atendente;
+	final private Pedido pedido;
+	
+	//cliente nao cadastrado
+	public Venda(Atendente atendente, Pedido pedido) {
+		this.atendente = atendente;
+		cliente = null;
+		this.pedido = pedido;
+	}
+	//cliente cadastrado
+	public Venda(Atendente atendente, Cliente cliente,Pedido pedido) {
+		this.atendente = atendente;
+		this.cliente = cliente;
+		this.pedido = pedido;
+	}
+	
+	@Override
+	public float descontoDiaGeek(float totalBebida) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int descontoClienteVip(float totalPedido, int pontosXp) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int descontoPersonalizado(float totalBebida, float totalComida, float desconto) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}
