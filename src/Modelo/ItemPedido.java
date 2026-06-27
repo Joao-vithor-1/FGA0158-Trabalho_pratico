@@ -5,30 +5,37 @@ import java.util.ArrayList;
 
 public class ItemPedido {
 
-    protected ArrayList<Produto> lista;
-
-    public ItemPedido() {
-        lista = new ArrayList<>();
+    private ArrayList<Produto> lista = new ArrayList<>();
+    private ArrayList<Integer> quantidades = new ArrayList<>();
+    
+    public void adicionarProduto(Produto produto, int quantidadeDesejada) {
+    	lista.add(produto);
+    	quantidades.add(quantidadeDesejada);
     }
 
     public void adicionarProduto(Produto produto) {
-        lista.add(produto);
+        adicionarProduto(produto, 1); //1 unidade por padrãp
     }
     
     
     
     
     public void removerProduto(Produto produto) {
-        lista.remove(produto);
+    	int index = lista.indexOf(produto);
+    	if (index != -1) {
+            lista.remove(index);
+            quantidades.remove(index);
+    	}
     }
+    
     //porque tem um metodo get pra lista?
     public ArrayList<Produto> getLista() {
         return lista;
     }
     
-    public Produto getProduto(int i) {
+    public int getQuantidade(int i) {
     	// adicionar exeçoes depois
-    	return lista.get(i);
+    	return quantidades.get(i);
     }
     
     
@@ -36,7 +43,7 @@ public class ItemPedido {
     	float total = 0;
     	for(int i = 0;i<lista.size();i++) {
     		if(lista.get(i) instanceof Comida) {
-    			total+=lista.get(i).getPrecoBase()*lista.get(i).getQtdProduto();
+    			total+=lista.get(i).getPrecoBase()*quantidades.get(i);
     		}
     	}
     	return total;
@@ -47,7 +54,7 @@ public class ItemPedido {
     	float total = 0;
     	for(int i = 0;i<lista.size();i++) {
     		if(lista.get(i) instanceof Bebida) {
-    			total+=lista.get(i).getPrecoBase()*lista.get(i).getQtdProduto();
+    			total+=lista.get(i).getPrecoBase()*quantidades.get(i);
     		}
     	}
     	return total;
@@ -88,6 +95,7 @@ public class ItemPedido {
 
     public void limparLista() {
         lista.clear();
+        quantidades.clear();
     }
 
 }

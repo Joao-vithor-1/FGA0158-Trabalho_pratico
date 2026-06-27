@@ -40,14 +40,12 @@ public class Pedido {
 		totalPedido = totalComida+totalBebida;
 		return totalPedido;
 	}
-	//arrumar uma maneira de fazer isso melhor
+
 	public void adicionarProduto(Produto produto, int qtd_desejada) {
-		produto.setQtdProduto(qtd_desejada);
-		itemPedido.adicionarProduto(produto);
+		itemPedido.adicionarProduto(produto, qtd_desejada);
 	}
 	
-	public void adiconarProduto(Produto produto) {
-		produto.setQtdProduto(1);
+	public void adicionarProduto(Produto produto) {
 		itemPedido.adicionarProduto(produto);
 	}
 	// sem cliente
