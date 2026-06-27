@@ -1,10 +1,11 @@
-package servico;
+package Modelo;
 
 public class Atendente {
+
 	String cpf;
 	String nome;
 	
-	public Atendente(String cpf, String nome) {
+	public Atendente( String cpf, String nome) {
 		this.cpf = cpf;
 		this.nome = nome;
 	}
