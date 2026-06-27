@@ -1,13 +1,16 @@
 package Modelo;
-
+import servico.VerificadorCpf;
+import excecao.CpfInvalidoException;
 public class Atendente {
 
-	String cpf;
-	String nome;
+	private String cpf;
+	private String nome;
 	
-	public Atendente( String cpf, String nome) {
-		this.cpf = cpf;
+	public Atendente( String cpf, String nome) throws CpfInvalidoException{
+		
+		this.cpf = VerificadorCpf.verficadorCpf(cpf);
 		this.nome = nome;
+		
 	}
 	
 	public String getCpf() {

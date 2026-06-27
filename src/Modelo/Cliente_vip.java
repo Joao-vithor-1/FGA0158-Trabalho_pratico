@@ -1,8 +1,8 @@
 package Modelo;
-
+import excecao.CpfInvalidoException;
 public class Cliente_vip extends Cliente{
 
-	public Cliente_vip(String nome, String cpf, int saldoXp) {
+	public Cliente_vip(String nome, String cpf, int saldoXp) throws CpfInvalidoException{
 		super(nome, cpf, saldoXp);
 	}
 	@Override

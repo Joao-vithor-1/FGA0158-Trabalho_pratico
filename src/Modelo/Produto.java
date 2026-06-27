@@ -14,6 +14,7 @@ public class Produto {
         this.qtdProduto = qtdProduto;
         this.precoBase = precoBase;
     }
+    
     public int getQtdProduto() {
         return qtdProduto;
     }

@@ -1,21 +1,25 @@
 package Modelo;
 
 import java.util.ArrayList;
-
+import servico.VerificaDuplicidadeProduto;
+import excecao.EstaNaListaExceptionProduto;
 
 public class ItemPedido {
 
     private ArrayList<Produto> lista = new ArrayList<>();
     private ArrayList<Integer> quantidades = new ArrayList<>();
     
-    public void adicionarProduto(Produto produto, int quantidadeDesejada) {
-    	lista.add(produto);
+    
+    public void adicionarProduto(Produto produto, int quantidadeDesejada) throws EstaNaListaExceptionProduto{
+    	Produto produto_verificado = VerificaDuplicidadeProduto.verificaDuplicidadeProduto(this, produto);
+    	lista.add(produto_verificado);
     	quantidades.add(quantidadeDesejada);
     }
 
-    public void adicionarProduto(Produto produto) {
-        adicionarProduto(produto, 1); //1 unidade por padrãp
-    }
+    public void adicionarProduto(Produto produto) throws EstaNaListaExceptionProduto{
+    	Produto produto_verificado = VerificaDuplicidadeProduto.verificaDuplicidadeProduto(this, produto);
+        adicionarProduto(produto_verificado, 1); //1 unidade por padrãp
+    } 
     
     
     
@@ -28,15 +32,19 @@ public class ItemPedido {
     	}
     }
     
-    //porque tem um metodo get pra lista?
-    public ArrayList<Produto> getLista() {
-        return lista;
+    public int getCodicoProduto(int i) {
+    	return lista.get(i).getCodigoProduto();
     }
     
-    public int getQuantidade(int i) {
+    /*
+    public ArrayList<Produto> getLista() {
+       return lista;
+    }*/
+    
+   /* public int getQuantidade(int i) {
     	// adicionar exeçoes depois
     	return quantidades.get(i);
-    }
+    }*/
     
     
     protected float somaComida() {
@@ -63,18 +71,18 @@ public class ItemPedido {
 
     
     private void imprimirComida() {
-    		System.out.println("Index...COMIDA : PRECO");
+    		System.out.println("Quantidade...COMIDA : PRECO");
     		for(int i = 0;i<lista.size();i++) {
     		if(lista.get(i) instanceof Comida) {
-    			System.out.println(i+"..."+lista.get(i).getNomeProduto() +" :  R$" + lista.get(i).getPrecoBase());
+    			System.out.println(quantidades.get(i)+"..."+lista.get(i).getNomeProduto() +" :  R$" + lista.get(i).getPrecoBase());
     		}
     	}
     }
     private void imprimirBebida() {
-    	System.out.println("Index...BEBIDA :  PRECO");
+    	System.out.println("Quantidade...BEBIDA :  PRECO");
 		for(int i = 0;i<lista.size();i++) {
 		if(lista.get(i) instanceof Bebida) {
-			System.out.println(i+"..."+lista.get(i).getNomeProduto() +" :  R$" + lista.get(i).getPrecoBase());
+			System.out.println(quantidades.get(i)+"..."+lista.get(i).getNomeProduto() +" :  R$" + lista.get(i).getPrecoBase());
 		}
       }
 		

@@ -1,4 +1,4 @@
-package Modelo;
+package servico;
 import excecao.CpfInvalidoException;
 
 public  class VerificadorCpf{
@@ -12,7 +12,7 @@ public  class VerificadorCpf{
 			}
 		}
 		if(cpfVerificado.length()!=11) {
-			throw new CpfInvalidoException(cpfVerificado,"cpf invalido");
+			throw new CpfInvalidoException(cpfVerificado,"CPF invalido");
 		}
 		return cpfVerificado;
 	}
