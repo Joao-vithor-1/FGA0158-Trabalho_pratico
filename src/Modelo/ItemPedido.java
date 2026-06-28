@@ -9,7 +9,7 @@ public class ItemPedido {
     private ArrayList<Produto> lista = new ArrayList<>();
     private ArrayList<Integer> quantidades = new ArrayList<>();
     
-    
+    	
     public void adicionarProduto(Produto produto, int quantidadeDesejada) throws EstaNaListaExceptionProduto{
     	Produto produto_verificado = VerificaDuplicidadeProduto.verificaDuplicidadeProduto(this, produto);
     	lista.add(produto_verificado);
@@ -32,7 +32,7 @@ public class ItemPedido {
     	}
     }
     
-    public int getCodicoProduto(int i) {
+    public int getCodigoProduto(int i) {
     	return lista.get(i).getCodigoProduto();
     }
     
@@ -88,7 +88,7 @@ public class ItemPedido {
 		
     }
     
-    public void ImprimirCardapio() {
+    public void imprimirCardapio() {
     	System.out.println();
     	imprimirBebida();
     	System.out.println();
