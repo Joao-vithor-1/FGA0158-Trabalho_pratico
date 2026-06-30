@@ -11,14 +11,31 @@ public class ItemPedido {
     
     	
     public void adicionarProduto(Produto produto, int quantidadeDesejada) throws EstaNaListaExceptionProduto{
-    	Produto produto_verificado = VerificaDuplicidadeProduto.verificaDuplicidadeProduto(this, produto);
-    	lista.add(produto_verificado);
+    	try {Produto produto_verificado = VerificaDuplicidadeProduto.verificaDuplicidadeProduto(this, produto);
+    	
+		}
+    	catch (EstaNaListaExceptionProduto e) {
+		System.out.println("Erro : " +e.getLocalizedMessage());
+		System.out.println("Produto " +e.getProduto().getNomeProduto());
+		System.out.println("Codigo :" +e.getProduto().getCodigoProduto());
+		return;
+	}
+
+    	lista.add(produto);
     	quantidades.add(quantidadeDesejada);
     }
 
     public void adicionarProduto(Produto produto) throws EstaNaListaExceptionProduto{
-    	Produto produto_verificado = VerificaDuplicidadeProduto.verificaDuplicidadeProduto(this, produto);
-        adicionarProduto(produto_verificado, 1); //1 unidade por padrãp
+    	try {Produto produto_verificado = VerificaDuplicidadeProduto.verificaDuplicidadeProduto(this, produto);
+    	
+    		}
+    	catch (EstaNaListaExceptionProduto e) {
+			System.out.println("Erro : " +e.getLocalizedMessage());
+			System.out.println("Produto " +e.getProduto().getNomeProduto());
+			System.out.println("Codigo :" +e.getProduto().getCodigoProduto());
+			return;
+		}
+        adicionarProduto(produto, 1); //1 unidade por padrãp
     } 
     
     

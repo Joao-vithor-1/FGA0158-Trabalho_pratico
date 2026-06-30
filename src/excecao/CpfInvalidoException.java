@@ -7,7 +7,7 @@ public class CpfInvalidoException extends Exception{
 				
 				this.cpf = cpf;
 			}
-	/*public String getCpf() {
-		return cpf;  removidor por nao ter sido usado
-	}*/
+	public String getCpf() {
+		return cpf;  
+	}
 }

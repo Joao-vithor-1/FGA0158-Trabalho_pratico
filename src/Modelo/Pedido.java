@@ -1,4 +1,5 @@
 package Modelo;
+import excecao.EstaNaListaExceptionProduto;
 import servico.*;
 public class Pedido {
 	private ItemPedido itemPedido;
@@ -41,11 +42,11 @@ public class Pedido {
 		return totalPedido;
 	}
 
-	public void adicionarProduto(Produto produto, int qtd_desejada) {
+	public void adicionarProduto(Produto produto, int qtd_desejada) throws EstaNaListaExceptionProduto {
 		itemPedido.adicionarProduto(produto, qtd_desejada);
 	}
 	
-	public void adicionarProduto(Produto produto) {
+	public void adicionarProduto(Produto produto) throws EstaNaListaExceptionProduto {
 		itemPedido.adicionarProduto(produto);
 	}
 	// sem cliente

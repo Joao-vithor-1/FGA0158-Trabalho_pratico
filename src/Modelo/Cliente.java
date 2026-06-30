@@ -9,8 +9,16 @@ public class Cliente  {
 	
 	public Cliente(String nome,String cpf, int saldoXp) throws CpfInvalidoException{
 		this.nome = nome;
-		this.cpf = VerificadorCpf.verficadorCpf(cpf);
 		this.saldoXp = saldoXp; 
+		try {
+		cpf = VerificadorCpf.verficadorCpf(cpf);
+		}
+		catch (CpfInvalidoException e) {
+			cpf = null;
+			System.out.println("Erro " + e.getLocalizedMessage());
+			System.out.println("O cpf errado "+ e.getCpf());
+		}
+		this.cpf = cpf;
 	}
 	public  void cadastrarXp(float dinheiro) {
 		int n = 1;

@@ -13,9 +13,15 @@ public class Lista_cliente {
 	}
 	//obs pode usar nome tambem ja que ambos sao string
 	public boolean buscarCliente(String cpf) throws CpfInvalidoException{
-		String cpfverificado = VerificadorCpf.verficadorCpf(cpf);
+		try{cpf = VerificadorCpf.verficadorCpf(cpf);
+		}
+		catch (CpfInvalidoException e) {
+			System.out.println("Erro " + e.getLocalizedMessage());
+			System.out.println("O cpf errado "+ e.getCpf());
+		}
+
 		for(int i = 0;i<lista.size();i++) {
-			if(cpfverificado.equals(lista.get(i).getCpf())) {
+			if(cpf.equals(lista.get(i).getCpf())) {
 				return true;
 			}
 		}
@@ -55,9 +61,15 @@ public class Lista_cliente {
 	}
 	
 	public boolean buscaClienteVip(String cpf) throws CpfInvalidoException{
-		cpf = VerificadorCpf.verficadorCpf(cpf);
-		int Buscar = BuscarCliente(cpf);
-		if(Buscar!=-1) {
+		try{cpf = VerificadorCpf.verficadorCpf(cpf);
+		}
+		catch (CpfInvalidoException e) {
+			System.out.println("Erro " + e.getLocalizedMessage());
+			System.out.println("O cpf errado "+ e.getCpf());
+		}
+		
+	int Buscar = BuscarCliente(cpf);
+	if(Buscar!=-1) {
 		return(lista.get(Buscar) instanceof Cliente_vip);
 		}
 		

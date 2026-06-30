@@ -8,8 +8,18 @@ public class Atendente {
 	
 	public Atendente( String cpf, String nome) throws CpfInvalidoException{
 		
-		this.cpf = VerificadorCpf.verficadorCpf(cpf);
-		this.nome = nome;
+		try {
+			cpf = VerificadorCpf.verficadorCpf(cpf);
+			this.cpf = cpf;
+			this.nome = nome;
+			}
+			catch (CpfInvalidoException e) {
+				cpf = null;
+				System.out.println("Erro " + e.getLocalizedMessage());
+				System.out.println("O cpf errado "+ e.getCpf());
+				
+			}
+		
 		
 	}
 	

@@ -12,5 +12,8 @@ public class EstaNaListaExceptionProduto extends Exception{
 		this.produto = produto;
 		this.lista = lista;
 	}
+	 public Produto getProduto() {
+		 return produto;
+	 }
 	
 }

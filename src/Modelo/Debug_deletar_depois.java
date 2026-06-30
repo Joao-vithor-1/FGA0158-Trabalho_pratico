@@ -19,7 +19,7 @@ public class Debug_deletar_depois {
 		lista_cliente.adicionarCliente(cliente_st);
 		lista_cliente.adicionarCliente(cliente_vip);
 		
-		System.out.println(lista_cliente.buscaClienteVip("012.345.1233-20")); 
+		System.out.println(lista_cliente.buscaClienteVip("012.345.123-20")); 
 		System.out.println(lista_cliente.buscarCliente("012.342.212-30"));
 		System.out.println(lista_cliente.buscaClienteVip("012.345.123-20"));
 		System.out.println(lista_cliente.buscaClienteVip("012.342.212-30"));
@@ -27,7 +27,7 @@ public class Debug_deletar_depois {
 		System.out.println(lista_cliente.buscaClienteVip("23"));
 		System.out.println(lista_cliente.buscarCliente("23"));
 				//teste item pedido
-		
+		System.out.println("teste lista produto");
 		comida = new Comida("Comida", 2, 0, 4, false, false);
 		bebida = new Bebida("Bebida", "P", 3, 4, 5);
 		lista_pedido = new ItemPedido();
@@ -38,8 +38,13 @@ public class Debug_deletar_depois {
 		lista_pedido.adicionarProduto(bebida,20);// nao é pra colocar na lista
 		System.out.println(lista_pedido.quantidadeProdutos());
 		
-		lista_pedido.ImprimirCardapio();
+		lista_pedido.imprimirCardapio();
 		// teste atedente
+		System.out.println("teste atedente");
+		Atendente adente1 = new Atendente("123-345-123-22", "nome 1");
+		Atendente adente2 = new Atendente("123-423-13-52", "nome 2");
+		System.out.println(adente1.getNome());
+		System.out.println(adente2.getNome());
 		
 	}
 }
