@@ -1,4 +1,4 @@
-package Modelo;
+package br.edu.cafeteria.modelo;
 
 public class Produto {
     private final int codigoProduto;

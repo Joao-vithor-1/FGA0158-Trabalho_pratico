@@ -1,7 +1,7 @@
-package servico;
-import excecao.EstaNaListaExceptionProduto;
-import Modelo.Produto;
-import Modelo.ItemPedido;
+package br.edu.cafeteria.servico;
+import br.edu.cafeteria.excecao.EstaNaListaExceptionProduto;
+import br.edu.cafeteria.modelo.ItemPedido;
+import br.edu.cafeteria.modelo.Produto;
 public class VerificaDuplicidadeProduto {
 	
 	static public Produto verificaDuplicidadeProduto(ItemPedido lista, Produto produto) throws EstaNaListaExceptionProduto{

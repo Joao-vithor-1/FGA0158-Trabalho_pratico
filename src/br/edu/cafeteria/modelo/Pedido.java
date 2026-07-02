@@ -1,6 +1,6 @@
-package Modelo;
-import excecao.EstaNaListaExceptionProduto;
-import servico.*;
+package br.edu.cafeteria.modelo;
+import br.edu.cafeteria.excecao.EstaNaListaExceptionProduto;
+import br.edu.cafeteria.servico.*;
 public class Pedido {
 	private ItemPedido itemPedido;
 	private final int comanda;

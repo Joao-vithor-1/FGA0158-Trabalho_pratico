@@ -1,6 +1,6 @@
-package Modelo;
-import excecao.CpfInvalidoException;
-import excecao.EstaNaListaExceptionProduto;
+package br.edu.cafeteria.modelo;
+import br.edu.cafeteria.excecao.CpfInvalidoException;
+import br.edu.cafeteria.excecao.EstaNaListaExceptionProduto;
 public class Debug_deletar_depois {
 	public static void main(String[] args) throws CpfInvalidoException,EstaNaListaExceptionProduto{
 		Cliente cliente_st;

@@ -1,7 +1,8 @@
-package excecao;
-import Modelo.Produto;
-import Modelo.ItemPedido;
+package br.edu.cafeteria.excecao;
 import java.util.ArrayList;
+
+import br.edu.cafeteria.modelo.ItemPedido;
+import br.edu.cafeteria.modelo.Produto;
 
 public class EstaNaListaExceptionProduto extends Exception{
 	private Produto produto;

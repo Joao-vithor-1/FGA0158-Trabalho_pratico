@@ -1,6 +1,6 @@
-package Modelo;
-import servico.VerificadorCpf;
-import excecao.CpfInvalidoException;
+package br.edu.cafeteria.modelo;
+import br.edu.cafeteria.excecao.CpfInvalidoException;
+import br.edu.cafeteria.servico.VerificadorCpf;
 public class Atendente {
 
 	private String cpf;

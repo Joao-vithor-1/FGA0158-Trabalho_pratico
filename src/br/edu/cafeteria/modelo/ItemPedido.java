@@ -1,8 +1,9 @@
-package Modelo;
+package br.edu.cafeteria.modelo;
 
 import java.util.ArrayList;
-import servico.VerificaDuplicidadeProduto;
-import excecao.EstaNaListaExceptionProduto;
+
+import br.edu.cafeteria.excecao.EstaNaListaExceptionProduto;
+import br.edu.cafeteria.servico.VerificaDuplicidadeProduto;
 
 public class ItemPedido {
 

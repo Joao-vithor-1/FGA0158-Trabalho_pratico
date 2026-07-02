@@ -1,7 +1,8 @@
-package Modelo;
-import excecao.CpfInvalidoException;
-import servico.VerificadorCpf;
+package br.edu.cafeteria.modelo;
 import java.util.ArrayList;
+
+import br.edu.cafeteria.excecao.CpfInvalidoException;
+import br.edu.cafeteria.servico.VerificadorCpf;
 
 public class Lista_cliente {
 	private ArrayList<Cliente> lista;

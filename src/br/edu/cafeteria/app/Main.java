@@ -1,11 +1,12 @@
-package app;
+package br.edu.cafeteria.app;
 
 import java.util.ArrayList;
-import Modelo.Cliente;
-import Modelo.Cliente_standard;
-import Modelo.Cliente_vip;
-import Modelo.Produto;
-import Modelo.Comida;
+
+import br.edu.cafeteria.modelo.Cliente;
+import br.edu.cafeteria.modelo.Cliente_standard;
+import br.edu.cafeteria.modelo.Cliente_vip;
+import br.edu.cafeteria.modelo.Comida;
+import br.edu.cafeteria.modelo.Produto;
 
 @SuppressWarnings("unused")
 public class Main {

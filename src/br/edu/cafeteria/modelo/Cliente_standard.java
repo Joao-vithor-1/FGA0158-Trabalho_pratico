@@ -1,5 +1,5 @@
-package Modelo;
-import excecao.CpfInvalidoException;
+package br.edu.cafeteria.modelo;
+import br.edu.cafeteria.excecao.CpfInvalidoException;
 public class Cliente_standard extends Cliente{
 
 	public Cliente_standard(String nome, String cpf, int saldoXp) throws CpfInvalidoException{

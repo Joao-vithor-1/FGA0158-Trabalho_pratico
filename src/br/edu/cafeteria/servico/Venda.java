@@ -1,5 +1,5 @@
-package servico;
-import Modelo.*;
+package br.edu.cafeteria.servico;
+import br.edu.cafeteria.modelo.*;
 
 public class Venda  implements Promocao{
 	final private Cliente cliente;

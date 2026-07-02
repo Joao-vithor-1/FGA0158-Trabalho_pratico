@@ -1,5 +1,5 @@
-package servico;
-import excecao.CpfInvalidoException;
+package br.edu.cafeteria.servico;
+import br.edu.cafeteria.excecao.CpfInvalidoException;
 
 public  class VerificadorCpf{
 	
