@@ -1,4 +1,5 @@
 package br.edu.cafeteria.servico;
+import br.edu.cafeteria.excecao.PontosInsuficientesException;
 import br.edu.cafeteria.modelo.*;
 
 public class Venda  implements Promocao{
@@ -21,14 +22,19 @@ public class Venda  implements Promocao{
 	
 	@Override
 	public float descontoDiaGeek(float totalBebida) {
-		// TODO Auto-generated method stub
-		return 0;
+
+		return totalBebida * 0.10f;
 	}
 
 	@Override
-	public int descontoClienteVip(float totalPedido, int pontosXp) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int descontoClienteVip(float totalPedido, int pontosXp) throws PontosInsuficientesException{
+
+		int pontosNecessarios = (int) totalPedido * 10;
+		
+		if (pontosXp < pontosNecessarios) {
+			throw new PontosInsuficientesException(pontosNecessarios, pontosXp);
+		}
+		return pontosNecessarios;
 	}
 
 	@Override
