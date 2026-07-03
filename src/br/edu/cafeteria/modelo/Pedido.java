@@ -1,6 +1,9 @@
 package br.edu.cafeteria.modelo;
+
+import br.edu.cafeteria.excecao.EstoqueInsuficienteException;
 import br.edu.cafeteria.excecao.EstaNaListaExceptionProduto;
 import br.edu.cafeteria.servico.*;
+
 public class Pedido {
 	private ItemPedido itemPedido;
 	private final int comanda;
@@ -38,17 +41,24 @@ public class Pedido {
 	}
 	
 	public float getTotalPedido() {
-		totalPedido = totalComida+totalBebida;
-		return totalPedido;
+
+		return getTotalComida() + getTotalBebida();
 	}
 
-	public void adicionarProduto(Produto produto, int qtd_desejada) throws EstaNaListaExceptionProduto {
+	public void adicionarProduto(Produto produto, int qtd_desejada) throws EstaNaListaExceptionProduto, EstoqueInsuficienteException {
+		
 		itemPedido.adicionarProduto(produto, qtd_desejada);
 	}
 	
-	public void adicionarProduto(Produto produto) throws EstaNaListaExceptionProduto {
+	public void adicionarProduto(Produto produto) throws EstaNaListaExceptionProduto, EstoqueInsuficienteException {
+		
 		itemPedido.adicionarProduto(produto);
 	}
+	
+	public void confirmarEstoque() {
+		itemPedido.baixaEstoque();
+	}
+	
 	// sem cliente
 	public Venda finalizarPedido(Atendente atedente) {
 		getTotalComida();
@@ -65,6 +75,4 @@ public class Pedido {
 		Venda  venda = new Venda(atedente,cliente,this);
 		return venda;
 	}
-	
-	
 }

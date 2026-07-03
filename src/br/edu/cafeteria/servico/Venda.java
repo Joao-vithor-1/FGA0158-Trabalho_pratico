@@ -29,7 +29,7 @@ public class Venda  implements Promocao{
 	@Override
 	public int descontoClienteVip(float totalPedido, int pontosXp) throws PontosInsuficientesException{
 
-		int pontosNecessarios = (int) totalPedido * 10;
+		int pontosNecessarios = (int) (totalPedido * 10);
 		
 		if (pontosXp < pontosNecessarios) {
 			throw new PontosInsuficientesException(pontosNecessarios, pontosXp);

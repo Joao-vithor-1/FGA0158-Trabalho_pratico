@@ -2,6 +2,7 @@ package br.edu.cafeteria.modelo;
 
 import java.util.ArrayList;
 
+import br.edu.cafeteria.excecao.EstoqueInsuficienteException;
 import br.edu.cafeteria.excecao.EstaNaListaExceptionProduto;
 import br.edu.cafeteria.servico.VerificaDuplicidadeProduto;
 
@@ -11,9 +12,9 @@ public class ItemPedido {
     private ArrayList<Integer> quantidades = new ArrayList<>();
     
     	
-    public void adicionarProduto(Produto produto, int quantidadeDesejada) throws EstaNaListaExceptionProduto{
+    public void adicionarProduto(Produto produto, int quantidadeDesejada) throws EstaNaListaExceptionProduto, EstoqueInsuficienteException{
     	try {Produto produto_verificado = VerificaDuplicidadeProduto.verificaDuplicidadeProduto(this, produto);
-    	
+    		
 		}
     	catch (EstaNaListaExceptionProduto e) {
 		System.out.println("Erro : " +e.getLocalizedMessage());
@@ -21,12 +22,16 @@ public class ItemPedido {
 		System.out.println("Codigo :" +e.getProduto().getCodigoProduto());
 		return;
 	}
+    	if (quantidadeDesejada > produto.getQtdProduto()) {
+    		
+    		throw new EstoqueInsuficienteException(produto.getNomeProduto(), quantidadeDesejada, produto.getQtdProduto());
+    	}
 
     	lista.add(produto);
     	quantidades.add(quantidadeDesejada);
     }
 
-    public void adicionarProduto(Produto produto) throws EstaNaListaExceptionProduto{
+    public void adicionarProduto(Produto produto) throws EstaNaListaExceptionProduto, EstoqueInsuficienteException {
     	try {Produto produto_verificado = VerificaDuplicidadeProduto.verificaDuplicidadeProduto(this, produto);
     	
     		}
@@ -123,5 +128,15 @@ public class ItemPedido {
         lista.clear();
         quantidades.clear();
     }
-
+    
+    protected void baixaEstoque() {
+    	
+    	for (int i = 0; i < lista.size(); i++) {
+    		Produto produto = lista.get(i);
+    		int quantidadeVendida = quantidades.get(i);
+    		produto.setQtdProduto(produto.getQtdProduto() - quantidadeVendida);
+    	}
+    }
 }
+
+	
