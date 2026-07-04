@@ -7,8 +7,12 @@ public class Cliente_vip extends Cliente{
 	}
 	@Override
 	public void cadastrarXp(float dinheiro) {
+		
 		int n = 2;
 		saldoXp += ((int) dinheiro) * n;
 	}
-
+	
+	public void resgatarPontos(int pontos) {
+		saldoXp -= pontos;
+	}
 }

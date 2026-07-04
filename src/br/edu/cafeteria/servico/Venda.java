@@ -38,9 +38,48 @@ public class Venda  implements Promocao{
 	}
 
 	@Override
-	public int descontoPersonalizado(float totalBebida, float totalComida, float desconto) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int descontoPersonalizado(float totalComida, float totalBebida, float percentualComida, float percentualBebida) {
+		
+		if(percentualComida < 0 || percentualComida > 100 || percentualBebida < 0 || percentualBebida > 100) {
+			
+			throw new IllegalArgumentException("O percentual de desconto precisa estar estar entre 0 e 100");
+		}
+		float descontoComida = totalComida * (percentualComida / 100f);
+		float descontoBebida = totalBebida * (percentualBebida / 100f);
+		
+		return (int) (descontoComida + descontoBebida);
 	}
-
+	
+	public float finalizarVenda(boolean diaEventoGeek, boolean pagarComXp) throws PontosInsuficientesException {
+		
+		float totalComida = pedido.getTotalComida();
+		float totalBebida = pedido.getTotalBebida();
+		
+		float descontoBebida;
+		if(diaEventoGeek) {
+			
+			descontoBebida = descontoDiaGeek(totalBebida);
+		}
+		else {
+			descontoBebida = 0;
+		}
+		float totalFinal = (totalComida + totalBebida) - descontoBebida;
+		
+		if(pagarComXp && cliente instanceof Cliente_vip) {
+			
+			Cliente_vip clienteVip = (Cliente_vip) cliente;
+			
+			int pontosDebitados = descontoClienteVip(totalFinal, clienteVip.getSaldoXp());
+			clienteVip.resgatarPontos(pontosDebitados);
+			totalFinal = 0;
+		}
+		else if (cliente != null) {
+			
+			cliente.cadastrarXp(totalFinal);
+		}
+		
+		pedido.confirmarEstoque();
+		
+		return totalFinal;
+	}
 }

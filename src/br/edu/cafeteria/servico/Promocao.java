@@ -8,5 +8,5 @@ public interface Promocao {
 	
 	public int descontoClienteVip( float totalPedido, int pontosXp ) throws PontosInsuficientesException;
 	
-	public 	int descontoPersonalizado( float totalBebida, float totalComida, float desconto);
+	public 	int descontoPersonalizado( float totalComida, float totalBebida, float percentualComida, float percentualBebida);
 }
