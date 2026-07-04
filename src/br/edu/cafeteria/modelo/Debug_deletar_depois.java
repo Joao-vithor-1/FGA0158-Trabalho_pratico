@@ -1,11 +1,12 @@
 package br.edu.cafeteria.modelo;
+import br.edu.cafeteria.excecao.ClienteVipException;
 import br.edu.cafeteria.excecao.CpfInvalidoException;
 import br.edu.cafeteria.excecao.EstoqueInsuficienteException;
 import br.edu.cafeteria.servico.Venda;
 import br.edu.cafeteria.excecao.EstaNaListaExceptionProduto;
 import br.edu.cafeteria.excecao.PontosInsuficientesException;
 public class Debug_deletar_depois {
-	public static void main(String[] args) throws CpfInvalidoException,EstaNaListaExceptionProduto, PontosInsuficientesException, EstoqueInsuficienteException {
+	public static void main(String[] args) throws CpfInvalidoException,EstaNaListaExceptionProduto, PontosInsuficientesException, EstoqueInsuficienteException, ClienteVipException {
 		Cliente cliente_st;
 		Cliente cliente_vip;
 		Lista_cliente lista_cliente;
@@ -15,7 +16,7 @@ public class Debug_deletar_depois {
 		// teste  lista cliente
 		
 		cliente_st = new Cliente_standard("nome1", "012.345.123-20", 0);
-		cliente_vip = new Cliente_vip("nome2","012.342.212-30", 0);
+		cliente_vip = new Cliente_vip("nome2","012.342.212-30", 15);
 		Cliente_vip cliente_t = new Cliente_vip("nome3","123",0);
 		System.out.println(cliente_t.getCpf());
 		lista_cliente = new Lista_cliente();
@@ -36,7 +37,7 @@ public class Debug_deletar_depois {
 		lista_pedido = new ItemPedido();
 		
 		lista_pedido.adicionarProduto(bebida);
-		//lista_pedido.adicionarProduto(comida,20);  crash por erro de estoque
+		//lista_pedido.adicionarProduto(comida,20); // programa crasha quando executa essa linha
 		lista_pedido.adicionarProduto(comida);// nao é pra colocar na lista
 		lista_pedido.adicionarProduto(bebida,20);// nao é pra colocar na lista
 		System.out.println(lista_pedido.quantidadeProdutos());
@@ -55,11 +56,18 @@ public class Debug_deletar_depois {
 		Comida comida_2 = new Comida("comida 2",4,23,12,true,false);
 		pedido.adicionarProduto(comida_2);
 		//teste venda
-		Venda venda = pedido.finalizarPedido(adente1);
+		Venda venda = pedido.finalizarPedido(adente1,cliente_t);
 		Venda venda2 = pedido.finalizarPedido(adente2);
 		Venda venda_cliente_vip = pedido.finalizarPedido(adente1,cliente_vip);
 		Venda venda_cliente = pedido.finalizarPedido(adente1,cliente_st);
 		//venda.descontoClienteVip(12, 34); crash por erro de pontos, e sem verificaçao cliente_vip
-				
+		System.out.println(venda_cliente_vip.finalizarVenda(true, true));
+		System.out.println(cliente_vip.getSaldoXp());
+		System.out.println(venda_cliente.finalizarVenda(true, true));
+		System.out.println(cliente_st.saldoXp);
+		System.out.println(venda2.finalizarVenda(false, true));
+		System.out.println(venda.finalizarVenda(true, true));
+		
+		
 	}
 }

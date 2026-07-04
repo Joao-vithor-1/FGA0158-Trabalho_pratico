@@ -1,7 +1,8 @@
 package br.edu.cafeteria.servico;
 import br.edu.cafeteria.excecao.PontosInsuficientesException;
+import br.edu.cafeteria.excecao.ClienteVipException;
 import br.edu.cafeteria.modelo.*;
-
+import br.edu.cafeteria.servico.VerficarPontos;
 public class Venda  implements Promocao{
 	final private Cliente cliente;
 	final private Atendente atendente;
@@ -26,15 +27,28 @@ public class Venda  implements Promocao{
 		return totalBebida * 0.10f;
 	}
 
-	@Override
-	public int descontoClienteVip(float totalPedido, int pontosXp) throws PontosInsuficientesException{
+	
+	private float descontoClienteVip(float totalPedido) throws PontosInsuficientesException,ClienteVipException{
 
 		int pontosNecessarios = (int) (totalPedido * 10);
-		
-		if (pontosXp < pontosNecessarios) {
-			throw new PontosInsuficientesException(pontosNecessarios, pontosXp);
+		try {
+			VerficarPontos.verificarPontos(cliente, pontosNecessarios);
+			
 		}
-		return pontosNecessarios;
+		catch(PontosInsuficientesException e){
+			System.out.println(e.getLocalizedMessage());
+			return totalPedido;
+		}
+		catch(ClienteVipException c){
+			if(c.getCliente() !=null && cliente.getCpf()!=null) {
+				System.out.println(c.getLocalizedMessage()+ cliente.getCpf());
+				return totalPedido;
+			}
+			System.out.println(c.getLocalizedMessage());
+			return totalPedido;
+		}
+		return 0;
+		
 	}
 
 	@Override
@@ -50,7 +64,7 @@ public class Venda  implements Promocao{
 		return (int) (descontoComida + descontoBebida);
 	}
 	
-	public float finalizarVenda(boolean diaEventoGeek, boolean pagarComXp) throws PontosInsuficientesException {
+	public float finalizarVenda(boolean diaEventoGeek, boolean pagarComXp) throws PontosInsuficientesException, ClienteVipException {
 		
 		float totalComida = pedido.getTotalComida();
 		float totalBebida = pedido.getTotalBebida();
@@ -64,8 +78,10 @@ public class Venda  implements Promocao{
 			descontoBebida = 0;
 		}
 		float totalFinal = (totalComida + totalBebida) - descontoBebida;
-		
-		if(pagarComXp && cliente instanceof Cliente_vip) {
+		if(pagarComXp) {
+		totalFinal = descontoClienteVip(totalFinal);
+		}
+		/*if(pagarComXp && cliente instanceof Cliente_vip) {
 			
 			Cliente_vip clienteVip = (Cliente_vip) cliente;
 			
@@ -76,8 +92,10 @@ public class Venda  implements Promocao{
 		else if (cliente != null) {
 			
 			cliente.cadastrarXp(totalFinal);
+		}*/
+		if(cliente!=null) {
+			cliente.cadastrarXp(totalFinal);
 		}
-		
 		pedido.confirmarEstoque();
 		
 		return totalFinal;

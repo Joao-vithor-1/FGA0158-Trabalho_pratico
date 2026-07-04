@@ -7,7 +7,7 @@ import br.edu.cafeteria.servico.*;
 public class Pedido {
 	private ItemPedido itemPedido;
 	private final int comanda;
-	private  float totalComida;
+	protected  float totalComida;
 	private float totalBebida;
 	private float totalPedido;
 	private static int tamanho_lista;
