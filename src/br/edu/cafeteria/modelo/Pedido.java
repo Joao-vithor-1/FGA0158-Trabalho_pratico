@@ -55,7 +55,7 @@ public class Pedido {
 		itemPedido.adicionarProduto(produto);
 	}
 	
-	public void confirmarEstoque() {
+	public void confirmarEstoque() throws EstoqueInsuficienteException{
 		itemPedido.baixaEstoque();
 	}
 	

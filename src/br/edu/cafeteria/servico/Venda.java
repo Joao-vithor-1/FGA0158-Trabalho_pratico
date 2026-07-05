@@ -1,6 +1,7 @@
 package br.edu.cafeteria.servico;
 import br.edu.cafeteria.excecao.PontosInsuficientesException;
 import br.edu.cafeteria.excecao.ClienteVipException;
+import br.edu.cafeteria.excecao.EstoqueInsuficienteException;
 import br.edu.cafeteria.modelo.*;
 import br.edu.cafeteria.servico.VerficarPontos;
 public class Venda  implements Promocao{
@@ -64,8 +65,13 @@ public class Venda  implements Promocao{
 		return (int) (descontoComida + descontoBebida);
 	}
 	
-	public float finalizarVenda(boolean diaEventoGeek, boolean pagarComXp) throws PontosInsuficientesException, ClienteVipException {
-		
+	public float finalizarVenda(boolean diaEventoGeek, boolean pagarComXp) throws PontosInsuficientesException, ClienteVipException,EstoqueInsuficienteException {
+		try{
+			pedido.confirmarEstoque();
+		}
+		catch(EstoqueInsuficienteException e) {
+			return 0;
+		}
 		float totalComida = pedido.getTotalComida();
 		float totalBebida = pedido.getTotalBebida();
 		
@@ -96,7 +102,8 @@ public class Venda  implements Promocao{
 		if(cliente!=null) {
 			cliente.cadastrarXp(totalFinal);
 		}
-		pedido.confirmarEstoque();
+		
+		
 		
 		return totalFinal;
 	}
