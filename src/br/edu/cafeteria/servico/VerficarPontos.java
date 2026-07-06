@@ -2,20 +2,20 @@ package br.edu.cafeteria.servico;
 import br.edu.cafeteria.excecao.ClienteVipException;
 import br.edu.cafeteria.excecao.PontosInsuficientesException;
 import br.edu.cafeteria.modelo.Cliente;
-import br.edu.cafeteria.modelo.Cliente_vip;
+import br.edu.cafeteria.modelo.ClienteVip;
 public class VerficarPontos {
 	
 	public  static void verificarPontos(Cliente cliente,int pontosNecessarios) throws ClienteVipException,PontosInsuficientesException{
 		if(cliente == null) {
 			throw new ClienteVipException(cliente,"Cliente não tem cadastro");
 		}
-		if(cliente instanceof Cliente_vip) {
+		if(cliente instanceof ClienteVip) {
 			if(cliente.getCpf() == null) {
 				throw new ClienteVipException(cliente,"Cliente com cadastro ou CPF invalido");
 				
 			}
 			else if(cliente.getSaldoXp() >= pontosNecessarios) {
-				((Cliente_vip) cliente).resgatarPontos(pontosNecessarios);
+				((ClienteVip) cliente).resgatarPontos(pontosNecessarios);
 				return;
 			}
 			else {
