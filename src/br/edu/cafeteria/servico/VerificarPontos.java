@@ -3,7 +3,7 @@ import br.edu.cafeteria.excecao.ClienteVipException;
 import br.edu.cafeteria.excecao.PontosInsuficientesException;
 import br.edu.cafeteria.modelo.Cliente;
 import br.edu.cafeteria.modelo.ClienteVip;
-public class VerficarPontos {
+public class VerificarPontos {
 	
 	public  static void verificarPontos(Cliente cliente,int pontosNecessarios) throws ClienteVipException,PontosInsuficientesException{
 		if(cliente == null) {

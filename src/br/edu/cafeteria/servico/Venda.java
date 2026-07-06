@@ -3,7 +3,7 @@ import br.edu.cafeteria.excecao.PontosInsuficientesException;
 import br.edu.cafeteria.excecao.ClienteVipException;
 import br.edu.cafeteria.excecao.EstoqueInsuficienteException;
 import br.edu.cafeteria.modelo.*;
-import br.edu.cafeteria.servico.VerficarPontos;
+import br.edu.cafeteria.servico.VerificarPontos;
 public class Venda  implements Promocao{
 	final private Cliente cliente;
 	final private Atendente atendente;
@@ -33,7 +33,7 @@ public class Venda  implements Promocao{
 
 		int pontosNecessarios = (int) (totalPedido * 10);
 		try {
-			VerficarPontos.verificarPontos(cliente, pontosNecessarios);
+			VerificarPontos.verificarPontos(cliente, pontosNecessarios);
 			
 		}
 		catch(PontosInsuficientesException e){
