@@ -1,10 +1,10 @@
 package br.edu.cafeteria.modelo;
 
 import java.util.ArrayList;
-import br.edu.cafeteria.servico.VerficadorEstoque;
 import br.edu.cafeteria.excecao.EstoqueInsuficienteException;
 import br.edu.cafeteria.excecao.EstaNaListaExceptionProduto;
 import br.edu.cafeteria.servico.VerificaDuplicidadeProduto;
+import br.edu.cafeteria.servico.VerificadorEstoque;
 
 public class ItemPedido {
 
@@ -14,7 +14,7 @@ public class ItemPedido {
     	
     public void adicionarProduto(Produto produto, int quantidadeDesejada) throws EstaNaListaExceptionProduto, EstoqueInsuficienteException{
     	try {Produto produto_verificado = VerificaDuplicidadeProduto.verificaDuplicidadeProduto(this, produto);
-    		 quantidadeDesejada = VerficadorEstoque.verificadorEstoque(quantidadeDesejada, produto_verificado);
+    		 quantidadeDesejada = VerificadorEstoque.verificadorEstoque(quantidadeDesejada, produto_verificado);
 		}
     	catch (EstaNaListaExceptionProduto e) {
 		System.out.println("Erro : " +e.getLocalizedMessage());
@@ -34,7 +34,7 @@ public class ItemPedido {
 
     public void adicionarProduto(Produto produto) throws EstaNaListaExceptionProduto, EstoqueInsuficienteException {
     	try {Produto produto_verificado = VerificaDuplicidadeProduto.verificaDuplicidadeProduto(this, produto);
-    		int temp = VerficadorEstoque.verificadorEstoque(1, produto_verificado);
+    		int temp = VerificadorEstoque.verificadorEstoque(1, produto_verificado);
 
     	}
     	catch (EstaNaListaExceptionProduto e) {
@@ -136,7 +136,7 @@ public class ItemPedido {
     	for (int i = 0; i < lista.size(); i++) {
     		Produto produto = lista.get(i);
     		int quantidadeVendida = quantidades.get(i);
-    		int temp = VerficadorEstoque.verificadorEstoque(quantidadeVendida, produto);
+    		int temp = VerificadorEstoque.verificadorEstoque(quantidadeVendida, produto);
     		
     		produto.setQtdProduto(produto.getQtdProduto() - quantidadeVendida);
     	}
