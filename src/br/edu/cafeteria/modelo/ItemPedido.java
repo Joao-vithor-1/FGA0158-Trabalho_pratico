@@ -13,37 +13,15 @@ public class ItemPedido {
     
     	
     public void adicionarProduto(Produto produto, int quantidadeDesejada) throws EstaNaListaExceptionProduto, EstoqueInsuficienteException{
-    	try {Produto produto_verificado = VerificaDuplicidadeProduto.verificaDuplicidadeProduto(this, produto);
-    		 quantidadeDesejada = VerificadorEstoque.verificadorEstoque(quantidadeDesejada, produto_verificado);
-		}
-    	catch (EstaNaListaExceptionProduto e) {
-		System.out.println("Erro : " +e.getLocalizedMessage());
-		System.out.println("Produto " +e.getProduto().getNomeProduto());
-		System.out.println("Codigo :" +e.getProduto().getCodigoProduto());
-		return;
-	}
-    	catch(EstoqueInsuficienteException E) {
-    		System.out.println(E.getLocalizedMessage());
-    		return;
-    	}
-    	
+    	Produto produto_verificado = VerificaDuplicidadeProduto.verificaDuplicidadeProduto(this, produto);
+        quantidadeDesejada = VerificadorEstoque.verificadorEstoque(quantidadeDesejada, produto_verificado);
 
-    	lista.add(produto);
-    	quantidades.add(quantidadeDesejada);
-    }
+        lista.add(produto);
+        quantidades.add(quantidadeDesejada);
+	}
 
     public void adicionarProduto(Produto produto) throws EstaNaListaExceptionProduto, EstoqueInsuficienteException {
-    	try {Produto produto_verificado = VerificaDuplicidadeProduto.verificaDuplicidadeProduto(this, produto);
-    		int temp = VerificadorEstoque.verificadorEstoque(1, produto_verificado);
-
-    	}
-    	catch (EstaNaListaExceptionProduto e) {
-			System.out.println("Erro : " +e.getLocalizedMessage());
-			System.out.println("Produto " +e.getProduto().getNomeProduto());
-			System.out.println("Codigo :" +e.getProduto().getCodigoProduto());
-			return;
-		}
-        adicionarProduto(produto, 1); //1 unidade por padrãp
+    	adicionarProduto(produto, 1);
     } 
     
     
@@ -132,21 +110,12 @@ public class ItemPedido {
     }
     
     protected void baixaEstoque() throws EstoqueInsuficienteException{
-    	try {
     	for (int i = 0; i < lista.size(); i++) {
-    		Produto produto = lista.get(i);
-    		int quantidadeVendida = quantidades.get(i);
-    		int temp = VerificadorEstoque.verificadorEstoque(quantidadeVendida, produto);
-    		
-    		produto.setQtdProduto(produto.getQtdProduto() - quantidadeVendida);
-    	}
-    	}
-    	catch(EstoqueInsuficienteException e) {
-    		System.out.println("Terminando venda por falta de estoque");
-    		System.out.println(e.getLocalizedMessage());
-    		
-    	}
+            Produto produto = lista.get(i);
+            int quantidadeVendida = quantidades.get(i);
+            
+            produto.reduzirEstoque(quantidadeVendida);
+        }
     }
 }
-
 	

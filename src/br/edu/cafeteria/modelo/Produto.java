@@ -33,4 +33,9 @@ public class Produto {
     public String getNomeProduto() {
         return nomeProduto;
     }
+    public void reduzirEstoque(int quantidade) {
+        if (quantidade <= this.qtdProduto) {
+            this.qtdProduto -= quantidade;
+        }
+    }
 }
