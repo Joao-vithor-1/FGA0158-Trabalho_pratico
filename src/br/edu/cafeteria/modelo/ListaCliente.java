@@ -68,7 +68,7 @@ public class ListaCliente {
 
     public boolean buscaClienteVip(String cpf) throws CpfInvalidoException {
         Cliente cliente = buscarClientePorCpf(cpf);
-        return cliente instanceof Cliente_vip;
+        return cliente instanceof ClienteVip;
     }
 
     public boolean atualizarCliente(String cpfAntigo, Cliente novoCliente) throws CpfInvalidoException {

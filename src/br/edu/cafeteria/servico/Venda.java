@@ -107,4 +107,16 @@ public class Venda  implements Promocao{
 		
 		return totalFinal;
 	}
+	
+	public Cliente getCliente() {
+	    return cliente;
+	}
+
+	public Atendente getAtendente() {
+	    return atendente;
+	}
+
+	public Pedido getPedido() {
+	    return pedido;
+	}
 }

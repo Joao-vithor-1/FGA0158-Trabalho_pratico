@@ -3,8 +3,8 @@ package br.edu.cafeteria.app;
 import java.util.ArrayList;
 
 import br.edu.cafeteria.modelo.Cliente;
-import br.edu.cafeteria.modelo.Cliente_standard;
-import br.edu.cafeteria.modelo.Cliente_vip;
+import br.edu.cafeteria.modelo.ClienteStandart;
+import br.edu.cafeteria.modelo.ClienteVip;
 import br.edu.cafeteria.modelo.Comida;
 import br.edu.cafeteria.modelo.Produto;
 

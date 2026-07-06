@@ -75,4 +75,8 @@ public class Pedido {
 		Venda  venda = new Venda(atedente,cliente,this);
 		return venda;
 	}
+	
+	public int getComanda() {
+	    return comanda;
+	}
 }
